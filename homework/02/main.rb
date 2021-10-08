@@ -35,4 +35,9 @@ def test3
   puts Calculator.number? 5.2
 end
 
-test3
+def test4
+  puts Calculator.extreme(:max, 1, 2, 3, 4, 5)
+  puts Calculator.extreme(:max, [1, 2, 3, 4, 5])
+end
+
+test4
