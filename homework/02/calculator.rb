@@ -49,13 +49,7 @@ class Calculator
     @state = @initial_state
     self
   end
-
-  # první parametr je symbol. Buď :max nebo :min.
-  # V případě chyby je možno použít fail, raise, nepo pouze obyčejnou hlášku.
-  # druhý parametr je pole čísel
-  # cíl je jednoduchý: metoda vrátí extrém v poli podle prvního parametru.
-  # ---
-  # U metody extreme si normálně můžete vybrat, zda bude brát právě 2 parametry (tedy :min/:max + array), nebo 2+ (:min/:max + další parametry). Za +0.5b to zvládne přijmout obojí . Tedy jak extreme(:min, [1, 2, 3, 4]), tak extreme(:min, 1, 2, 3, 4) .
+  
   def self.extreme(method, *params)
     if method != :min and method != :max
       raise "Wrong method, use :min or :max."
