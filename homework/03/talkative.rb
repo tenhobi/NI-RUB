@@ -10,9 +10,9 @@ module Talkative
 
   # inspiration: https://gist.github.com/matugm/db363c7131e6af27716c
   def encrypt(what, shift = 3)
-    encryptor = Hash[Array('a'..'z').zip(Array('a'..'z').rotate(shift)) + Array('A'..'Z').zip(Array('A'..'Z').rotate(shift))]
+    encryptor = Hash[Array('a'..'z').zip(Array('a'..'z').rotate(shift)) + Array('A'..'Z').zip(Array('A'..'Z').rotate(shift)) + Array('0'..'9').zip(Array('0'..'9').rotate(shift))]
     output what.chars.reduce('') { |memo, c|
-      if /[^[:alpha:]]/.match(c)
+      if /[^[:alnum:]]/.match(c)
         memo + c
       else
         memo + encryptor[c].to_s
