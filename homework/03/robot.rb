@@ -1,9 +1,6 @@
 require_relative 'talkative'
 require_relative 'validations'
 
-# Obsahuje modul Talkative, který doplní schopnost různě komunikovat
-# ---
-# Obsahuje modul Validations, který obsahuje validaci.
 class Robot
   include Comparable
   include Talkative
@@ -16,12 +13,11 @@ class Robot
     @arms = []
   end
 
-  # Musí umět přijmout více rukou (instancí Arm)
   def add_arms(*params)
     _arms = params.flatten
     _arms.each do |param|
       unless param.is_a? Arm
-        raise 'hoopsie, this is not an arm'
+        raise 'Hoopsie, this is not an arm.'
       end
     end
 
@@ -29,7 +25,7 @@ class Robot
   end
 
   def introduce
-    output 'My name is ' + @name + " and I have these arms:\n" + _output_arms
+    output "My name is #{@name} and I have these arms:\n" + _output_arms
   end
 
   def output(input)
@@ -43,12 +39,10 @@ class Robot
   protected
 
   def _output_arms
-    out = ''
     aggregation = @arms.group_by { |arm| arm.type }.map { |key, value| [key, value.size] }
-    aggregation.each do |type|
-      out += "#{type[1]} arms of type #{type[0].to_s}\n"
+    aggregation.reduce('') do |memo, type|
+      memo + "#{type[1]} arms of type #{type[0].to_s}\n"
     end
-    out
   end
 
   def _count_score
