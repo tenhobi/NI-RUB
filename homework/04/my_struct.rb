@@ -10,10 +10,11 @@ class MyStruct
   end
 
   def to_h(&block)
+    clone = @data.clone
     if block
-      @data.to_h(&block)
+      clone.to_h(&block)
     else
-      @data.to_h
+      clone.to_h
     end
   end
 
@@ -27,7 +28,7 @@ class MyStruct
 
   def delete_field(key)
     field_name = key.to_sym
-    return unless @data.key?(field_name)
+    raise NameError, "Cannot delete unknown field '#{field_name}'" unless @data.key?(field_name)
 
     singleton_class.remove_method(field_name) # getter
     singleton_class.remove_method("#{field_name}=") # setter
@@ -56,8 +57,9 @@ class MyStruct
 
       field_name = method.to_s.chomp('=')
       _create_field(field_name, args[0])
+    # ignore unknown getters
     elsif args.empty?
-      # ignore unknown getters
+      nil
     else
       super
     end
