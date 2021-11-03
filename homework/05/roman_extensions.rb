@@ -2,16 +2,8 @@
 
 module RomanExtensions
   module Numeric
-    def /(other)
-      return Roman.new(self / other.value) if other.is_a? Roman
-
-      super
-    end
-  end
-
-  module Integer
     def roman
-      Roman.arabic_to_roman(Roman.new(self).to_i)
+      Roman.arabic_to_roman(Roman.new(self))
     end
 
     def to_roman
@@ -30,6 +22,5 @@ module RomanExtensions
   end
 end
 
-Float.prepend RomanExtensions::Numeric
-Integer.prepend RomanExtensions::Numeric, RomanExtensions::Integer
+Numeric.prepend RomanExtensions::Numeric
 String.prepend RomanExtensions::String

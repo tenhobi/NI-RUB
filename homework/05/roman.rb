@@ -4,90 +4,46 @@ class Roman
   include Comparable
 
   def initialize(number)
-    case number
-    when Numeric
-      @number = number.to_i
-    when String
-      @number = self.class.roman_to_arabic(number)
-    else
-      raise ArgumentError, 'Not a valid arabic or roman number'
-    end
-
+    @number = (number.is_a? String) ? self.class.roman_to_arabic(number) : number.to_i
     self.class.check_limit(@number)
   end
 
   def coerce(other)
-    case other
-    when Numeric
-      [self, other]
-    else
-      raise TypeError, "#{self.class} can't be coerced into #{other.class}"
-    end
-  end
-
-  def value
-    @number
+    [other.to_i, to_i]
   end
 
   def <=>(other)
-    case other
-    when Roman
-      value <=> other.value
-    when Numeric
-      value <=> other
-    else
-      raise TypeError, 'Dunno what to do'
-    end
+    to_i <=> other.to_i
   end
 
   def succ
-    self.class.new(value + 1)
+    self.class.new(@number + 1)
   end
 
   def +(other)
-    case other
-    when Roman
-      self.class.new(value + other.value)
-    when Numeric
-      self.class.new(value + other)
-    else
-      raise TypeError, 'Dunno what to do'
-    end
+    self.class.new(@number + other.to_i)
   end
 
   def *(other)
-    case other
-    when Roman
-      self.class.new(value * other.value)
-    when Numeric
-      self.class.new(value * other)
-    else
-      raise TypeError, 'Dunno what to do'
-    end
+    self.class.new(@number * other.to_i)
+  end
+
+  def -(other)
+    self.class.new(@number - other.to_i)
   end
 
   def /(other)
-    case other
-    when Roman
-      raise ArgumentError, 'Cannot divide by zero' if other.value.zero?
-
-      self.class.new(value / other.value)
-    when Numeric
-      raise ArgumentError, 'Cannot divide by zero' if other.zero?
-
-      self.class.new(value / other)
-    else
-      raise TypeError, 'Dunno what to do'
-    end
+    self.class.new(@number / other.to_i)
   end
 
   def to_i
-    value.to_i
+    @number
   end
+
   alias to_int to_i
 
   def to_s
-    self.class.arabic_to_roman(value)
+    self.class.arabic_to_roman(@number)
   end
 
   class << self
@@ -142,6 +98,7 @@ class Roman
     end
 
     def arabic_to_roman(number)
+      number = number.to_i
       roman_builder = ''
       ROMAN_ARABIC_TRANSFORMATION.each do |pair|
         letter = pair[0]
