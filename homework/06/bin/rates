@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'rates/cli'
+
+# stolen from https://github.com/rails/thor/issues/370#issuecomment-381423134
+ARGV.unshift(Rates::CLI.default_task) unless Rates::CLI.all_tasks.has_key?(ARGV[0]) || Rates::CLI.instance_variable_get(:@map).has_key?(ARGV[0])
+Rates::CLI.start(ARGV)
