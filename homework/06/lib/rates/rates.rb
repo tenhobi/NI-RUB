@@ -2,6 +2,8 @@
 
 require 'csv'
 require 'date'
+require 'net/http'
+require 'fileutils'
 
 require_relative 'conversion'
 require_relative 'converter'
