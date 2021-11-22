@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Full name:</strong>
+  <%= @person.full_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @person.email %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @person.username %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <a href="/schools/<%= @person.school_id %>"><%= @person.school_name %></a>
+</p>
+
+<p>
+  <strong>Publications:</strong>
+  <ul>
+    <% if @publications.size == 0 %>
+      <li>... no publication yet</li>
+    <% end %>
+    <% @publications.each do |publication| %>
+      <li><a href="/publications/<%= publication.id %>"><%= publication.title %></a></li>
+    <% end %>
+  </ul>
+</p>
+
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>
