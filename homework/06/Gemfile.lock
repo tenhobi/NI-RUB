@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rates (0.1.0)
+    rates (0.2.0)
       csv (~> 3.2)
       date (~> 3.2)
       fileutils (~> 1.6)

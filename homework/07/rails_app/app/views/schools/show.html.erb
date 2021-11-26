@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @school.code %>
+</p>
+
+<p>
+  <strong>People:</strong>
+<ul>
+  <% if @people.size == 0 %>
+    <li>... no people yet</li>
+  <% end %>
+  <% @people.each do |person| %>
+    <li><a href="/people/<%= person.id %>"><%= person.full_name %></a></li>
+  <% end %>
+</ul>
+</p>
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
