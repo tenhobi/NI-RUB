@@ -24,14 +24,14 @@ MEDIUM = [
   '.1.9..87.5...22.8..93.5.4..18.7...36..1..'
 ].freeze
 
-describe 'medium problem set' do
-  it 'should solve' do
-    i = 0
-    MEDIUM.each do |g|
-      puts "solving #{g}"
-      game = Sudoku.new(g)
-      expect { game.solve }.to change { game.solved? }.from(false).to(true)
-      puts "solved #{i += 1}/#{MEDIUM.size}"
-    end
-  end
-end
+# describe 'medium problem set' do
+#   it 'should solve' do
+#     i = 0
+#     MEDIUM.each do |g|
+#       puts "solving #{g}"
+#       game = Sudoku.new(g)
+#       expect { game.solve }.to change { game.solved? }.from(false).to(true)
+#       puts "solved #{i += 1}/#{MEDIUM.size}"
+#     end
+#   end
+# end

@@ -170,6 +170,7 @@ class Grid
 
   # Serialize grid values to a one line string
   def solution
+    puts each.map(&:to_i).join('')
     each.map(&:to_i).join('')
   end
 end

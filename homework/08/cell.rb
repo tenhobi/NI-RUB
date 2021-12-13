@@ -36,7 +36,6 @@ class Cell
   end
 
   def reset
-    @value = 0
     @possible = (1..@dimension).to_a
   end
 
