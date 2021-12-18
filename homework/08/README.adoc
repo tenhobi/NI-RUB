@@ -1,0 +1,11 @@
+Fork or copy this repo and implement Sudoku solver.
+
+Uses rspec to run specs. Run with 
+
+```
+rspec spec
+```
+
+You are allowed to modify all the code. 
+
+DO NOT MODIFY SPECS! (only if something key doesn't work, like requires)
