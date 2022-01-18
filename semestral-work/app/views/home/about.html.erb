@@ -1,0 +1,40 @@
+<h1>About Bittnja3gram</h1>
+
+<p>A simple clon of Instagram, but better: Bittnja3gram.</p>
+
+<p>In this app, you can view multiple pages:</p>
+
+<ul>
+  <li><%= link_to "home page", root_path %></li>
+  <li><%= link_to "about page", about_path %> (this page)</li>
+  <% if Post.first %>
+    <li><%= link_to "post page", post_path(Post.first) %></li>
+  <% else %>
+    <li>post page</li>
+  <% end %>
+  <% if Tag.first %>
+    <li><%= link_to "tag filter page", tag_filter_path(Tag.first.name) %></li>
+  <% else %>
+    <li>tag filter page</li>
+  <% end %>
+  <% if User.first %>
+    <li><%= link_to "user page", user_profile_path(User.first.username) %></li>
+  <% else %>
+    <li>user page</li>
+  <% end %>
+  <li><%= link_to "user settings page", edit_user_registration_path %></li>
+  <li><%= link_to "sign up page", new_user_registration_path %></li>
+  <li><%= link_to "sign in page", new_user_session_path %></li>
+  <li><%= link_to "sign out page", destroy_user_session_path, data: {
+    "turbo-method": :delete
+  } %></li>
+
+</ul>
+
+<h3 class="mt-5">Used libraries</h3>
+
+<ul>
+  <% Gem.loaded_specs.sort.each do |name, spec| %>
+    <li><%= link_to "#{name} (#{spec.licenses.join(", ")})", spec.homepage %>: <%= spec.summary %></li>
+  <% end %>
+</ul>

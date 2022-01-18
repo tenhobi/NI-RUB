@@ -1,0 +1,22 @@
+<div class="card" style="position: relative">
+  <%= link_to(post_path(post)) do %>
+    <%= image_tag url_for(post.image), style: "background: #f5f5f5; width: 100%;" %>
+  <% end %>
+  <div class="card-body">
+    <div class="row align-items-center mb-3">
+      <div class="col-1">
+        <%= image_tag url_for(post.user.image), style: "width: 30px" %>
+      </div>
+      <div class="col-auto pl-4">
+        <%= link_to "@#{post.user.username}", user_profile_path(post.user.username) %>
+      </div>
+    </div>
+    <p class="card-text"><%= add_links_to_description(post.description) %></p>
+    <p class="card-text text-muted small">
+      <%= post.created_at %>
+      <% unless (post.created_at - post.updated_at).abs < 3 %>
+        <small>(updated at <%= post.updated_at %>)</small>
+      <% end %>
+    </p>
+  </div>
+</div>

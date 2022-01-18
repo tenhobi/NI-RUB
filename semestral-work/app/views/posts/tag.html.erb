@@ -1,0 +1,13 @@
+<p class="text-center mb-5">
+  <% if @posts&.empty? %>
+    ... no results for tag <code>#<%= @tag %></code>
+  <% else %>
+    search results for tag <code>#<%= @tag %></code>:
+  <% end %>
+</p>
+
+<% @posts&.each do |post| %>
+  <div class="col-md-7 mx-auto mb-5">
+    <%= render post %>
+  </div>
+<% end %>

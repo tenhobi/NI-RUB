@@ -1,0 +1,71 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light" >
+  <%= link_to "Bittnja3gram", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Home", root_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "About", about_path, class: "nav-link" %>
+      </li>
+    </ul>
+
+    <script>
+        function parseSearch(e){
+            e.preventDefault();
+            let value = e.target.querySelector("input[type='text']").value.trim();
+
+            // user
+            if (value.charAt(0) === '@') {
+                value = value.substring(1);
+                window.location = "<%= user_search_path %>/" + value;
+                return;
+            }
+
+            // if it contains hashtag
+            if (value.charAt(0) === '#') {
+                value = value.substring(1);
+            }
+
+            window.location = "<%= tag_filter_path %>/" + value;
+        }
+    </script>
+
+    <%= form_with url: tag_filter_path, method: :get, html: { onsubmit: "parseSearch(event)", class: "form-inline my-2 my-lg-0 mr-auto" } do |form| %>
+      <%= form.text_field :tag, class: "form-control mr-sm-2", placeholder: "@user or #tag" %>
+      <%= form.submit "Search", class: "btn my-2 my-sm-0" %>
+    <% end %>
+
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "Add post", new_post_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item btn-group">
+          <%= link_to "@#{current_user.username}", user_profile_path(current_user.username), class: "nav-link active" %>
+          <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Sign Out", destroy_user_session_path, data: {
+              "turbo-method": :delete
+            }, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
