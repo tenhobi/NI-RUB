@@ -53,17 +53,3 @@ I get used to it and it became very cool!
 Rails are just amazing
 and everything works like magic,
 if you let it and accept it yourself. :D
-
-# PR comment
-
-Dobrý den,
-odevzdávám svou semestrální práci.
-
-Zadání bylo udělat jednoduchý klon instagramu, tj. zobrazení fotek ve feedu, případně na profilu uživatele, filtrování a nastavení účtu. Zadání jsem doufám splnil a doufám, že bude vše vyhovovat. :)
-
-Aplikaci jsem nasadil na Heroku: <url>
-
-Zážitek s Ruby a Rails byly ve výsledku velmi dobré,
-a trochu mě mrzí, že není nějaký doprovodný předmět jen pro Rails. Nicméně si dovolím postnout pár vět z počátečního šoku a trablí s Rails, kdy mi věci absolutně nešly. :D
-
-> TODO
