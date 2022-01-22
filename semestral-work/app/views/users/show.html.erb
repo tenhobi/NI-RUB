@@ -1,0 +1,11 @@
+<%= render @user %>
+
+<% @posts&.each_slice(3) do |sliced_posts| %>
+  <div class="row">
+    <% sliced_posts.each do |post| %>
+      <div class="col-md-4 mb-5" style="display: flex">
+        <%= render post %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
